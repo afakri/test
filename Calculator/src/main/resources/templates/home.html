@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link href="../static/css/style.css" rel="stylesheet"
+          th:href="@{/css/style.css}" />
+</head>
+<body>
+<div>
+    <h1>Calculator</h1>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    <div th:switch="${error}">
+        <p th:case="'NumberError'">
+            Wrong value - must be a number
+        </p>
+        <p th:case="'Other'">
+            An error happened
+        </p>
+
+    </div>
+    <form th:action="@{/calculate}" method="get">
+        <table>
+            <tr>
+                <td><label for="number1">Number1:</label></td>
+                <td><input name="number1"
+                           id="number1"
+                           th:name="number1" th:value="${number1}"></td>
+            </tr>
+            <tr>
+                <td><label for="number2">Number2:</label></td>
+                <td><input name="number2"
+                           id="number2"
+                           th:name="number2" th:value="${number2}"></td>
+            </tr>
+            <tr>
+                <td><label for="result">Result:</label></td>
+                <td><input name="result"
+                           id="result"
+                           th:name="result" th:value="${result}"></td>
+            </tr>
+            <tr>
+                <td><button type="submit" th:name="operation" th:value="add">
+                    Add</button></td>
+                <td><button type="submit" th:name="operation" th:value="subtract">
+                    Subtract</button></td>
+                <td><button type="submit" th:name="operation" th:value="divide">
+                   Divide</button></td>
+                <td><button type="submit" th:name="operation" th:value="multiply">
+                    multiply</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
